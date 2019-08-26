@@ -1,0 +1,23 @@
+package cn.itcast.service.provider;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.io.IOException;
+
+/**
+ * 通过main函数启动服务
+ *  基于main方法启动服务者
+ */
+public class CompanyProvider {
+
+    public static void main(String[] args) throws IOException {
+
+        // 1.加载配置文件111
+        ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:spring/applicationContext-*.xml");
+
+        // 2.启动
+        ac.start();
+        // 3.输入后停止
+        System.in.read();
+    }
+}

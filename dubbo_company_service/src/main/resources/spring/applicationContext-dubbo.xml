@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <description>企业服务管理工程，实现发布服务</description>
+    <!-- 1.配置服务端项目名字：可以随意写，只是要保证唯一(和项目名一致规范) -->
+    <dubbo:application name="dubbo_company_service"/>
+
+    <!-- 2.注册中心地址 -->
+    <dubbo:registry address="zookeeper://192.168.190.01:2181"/>
+
+    <!--
+        3.协议，客户端通讯的访问端口
+        此dubbo服务的请求端口（和tomcat端无关：不能一致）
+            port（端口）：服务提供者的真实请求端口
+            不要和其他项目的端口一致
+    -->
+    <dubbo:protocol name="dubbo" port="20882"/>
+
+    <!-- 4.dubbo注解扫描 -->
+    <dubbo:annotation package="cn.itcast.service"/>
+
+</beans>

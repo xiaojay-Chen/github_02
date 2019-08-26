@@ -1,0 +1,6 @@
+2019-08-22 21:27:37,156 DEBUG [cn.itcast.dao.cargo.ExtCproductDao.findByProductId] - ====> Parameters: ff80808160b5b3460160b5b4d5500000(String)
+2019-08-22 21:27:37,156 DEBUG [cn.itcast.dao.cargo.ExtCproductDao.findByProductId] - <====      Total: 8
+2019-08-22 21:27:37,156 DEBUG [cn.itcast.dao.cargo.ContractProductDao.selectByExample] - <==      Total: 194
+2019-08-22 21:27:37,156 DEBUG [org.mybatis.spring.SqlSessionUtils] - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@607b2792]
+2019-08-22 21:27:37,187 INFO [org.springframework.context.support.GenericApplicationContext] - Closing org.springframework.context.support.GenericApplicationContext@27ff5d15: startup date [Thu Aug 22 21:27:34 CST 2019]; root of context hierarchy
+2019-08-22 21:27:37,187 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closed

@@ -1,0 +1,9 @@
+2019-08-22 21:26:41,004 DEBUG [SQL_CACHE] - Cache Hit Ratio [SQL_CACHE]: 0.0
+2019-08-22 21:26:41,036 DEBUG [org.mybatis.spring.transaction.SpringManagedTransaction] - JDBC Connection [com.mysql.jdbc.JDBC4Connection@60acd609] will be managed by Spring
+2019-08-22 21:26:41,036 DEBUG [cn.itcast.dao.system.DeptDao.findAll_COUNT] - ==>  Preparing: SELECT count(0) FROM pe_dept WHERE company_id = ? 
+2019-08-22 21:26:41,036 DEBUG [cn.itcast.dao.system.DeptDao.findAll_COUNT] - ==> Parameters: 1(String)
+2019-08-22 21:26:41,036 DEBUG [cn.itcast.dao.system.DeptDao.findAll_COUNT] - <==      Total: 1
+2019-08-22 21:26:41,036 DEBUG [cn.itcast.dao.system.DeptDao.findAll] - ==>  Preparing: select * from pe_dept where company_id=? LIMIT ? 
+2019-08-22 21:26:41,036 DEBUG [cn.itcast.dao.system.DeptDao.findAll] - ==> Parameters: 1(String), 2(Integer)
+2019-08-22 21:26:41,036 DEBUG [cn.itcast.dao.system.DeptDao.findById] - ====>  Preparing: select * from pe_dept where dept_id=? 
+2019-08-22 21:26:41,036 DEBUG [cn.itcast.dao.system.DeptDao.findById] - ====> Parameters: 8a7e82be61400c000161400c05810000(String)

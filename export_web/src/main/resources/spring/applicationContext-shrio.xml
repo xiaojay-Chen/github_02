@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 1. 配置shrio过滤器工厂 -->
+    <!-- 注意：这里的id时固定的，匹配wen.xml中shrio过滤器的filter-name -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- 1.1 注入shrio的最核心对象：安全管理器 -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 1.2 注入一些参数 -->
+        <!-- A. 为认证时候自动跳转到的登录页面路径 -->
+        <property name="loginUrl" value="/login.jsp"/>
+        <!-- B. 认证成功后跳转到的页面路径：如果认证成功程序中有指定跳转页面就以程序指定为主 -->
+        <property name="successUrl" value="/home.jsp"/>
+        <!-- C. 授权访问失败，默认跳转的页面 -->
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+         <!-- 1.3 注入shrio的过滤器（执行链） -->
+        <property name="filterChainDefinitions">
+            <!--
+                anon:匿名访问过滤器，指定放行资源
+                authc：认证过滤器
+				perms：授权校验过滤器
+            -->
+            <value>
+                /login.jsp* = anon <!-- 访问login.jsp或login.jsp？username=aa就直接放行 -->
+                /login* = anon
+                /css/** = anon
+                /img/** = anon
+                /make/** = anon
+                /plugins/** = anon
+                <!-- XML配置方式实现权限管理 -->
+                <!-- 左边为访问的资源，右边为需要的权限 -->
+                <!--/system/user/list.do = perms["用户管理"]-->
+                /** = authc
+            </value>
+        </property>
+    </bean>
+
+    <!-- 2. 配置shrio的安全管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!-- 引用自定义的reaml -->
+        <property name="realm" ref="authRealm"/>
+    </bean>
+
+    <!-- 3. 配置自定义的Reaml -->
+    <bean id="authRealm" class="cn.itcast.web.auth.AuthRealm">
+        <!-- 3.1 注入凭证匹配器 -->
+        <property name="credentialsMatcher" ref="credentialsMatcher"/>
+    </bean>
+
+    <!-- 4. 配置（自定义的）凭证匹配器，对用户输入的密码自动按照MD5进行加密 -->
+    <bean id="credentialsMatcher" class="cn.itcast.web.auth.CustomCredentialslMatcher"/>
+
+    <!-- 5.开启shrio注解支持 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+    <!-- depends-on:表示创建当前bean对象前，先创建depends-on依赖对象 -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor"/>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+
+</beans>

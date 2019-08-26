@@ -1,0 +1,8 @@
+2019-08-22 21:26:48,414 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2019-08-22 21:26:48,639 DEBUG [org.mybatis.spring.SqlSessionUtils] - Creating a new SqlSession
+2019-08-22 21:26:48,639 DEBUG [org.mybatis.spring.SqlSessionUtils] - Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6a2c717f]
+2019-08-22 21:26:48,655 DEBUG [org.mybatis.spring.transaction.SpringManagedTransaction] - JDBC Connection [com.mysql.jdbc.JDBC4Connection@7ee8130e] will be managed by Spring
+2019-08-22 21:26:48,655 DEBUG [cn.itcast.dao.system.ModuleDao.findModuleByRoleId] - ==>  Preparing: SELECT m.* FROM ss_module m,pe_role_module rm WHERE m.module_id = rm.module_id AND rm.role_id=? 
+2019-08-22 21:26:48,686 DEBUG [cn.itcast.dao.system.ModuleDao.findModuleByRoleId] - ==> Parameters: 4028a1cd4ee2d9d6014ee2df4c6a0000(String)
+2019-08-22 21:26:48,702 DEBUG [cn.itcast.dao.system.ModuleDao.findModuleByRoleId] - <==      Total: 5
+2019-08-22 21:26:48,702 DEBUG [org.mybatis.spring.SqlSessionUtils] - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6a2c717f]

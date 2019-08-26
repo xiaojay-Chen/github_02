@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- 要映射的dao文件类路径 -->
+<mapper namespace="cn.itcast.dao.system.DeptDao">
+    <!-- 实体类属性名和数据库表名一一对应, -->
+    <resultMap id="BaseResultMap" type="cn.itcast.domain.system.Dept">
+        <id column="dept_id" property="id"/>
+        <result column="dept_name" property="deptName"/>
+        <result column="state" property="state"/>
+        <result column="company_id" property="companyId"/>
+        <result column="company_name" property="companyName"></result>
+
+        <!--
+            封装当前部门关联的父部门对象
+
+            association:一对一配置
+                property：指定要封装的对象属性名称
+                colum：1.对象对应到表中的外键字段名称
+                       2.此字段的值会作为select对应的查询方法的参数
+                javaType：对象类型
+                select：
+                    1.对应查询方法，所以这里需要在dao再写一个根据部门id查询的方法(包名类名+方法)
+                    2.会自动把select对应方法返回的值，赋值给property属性
+        -->
+        <association property="parent" column="parent_id"
+                     javaType="cn.itcast.domain.system.Dept"
+                     select="cn.itcast.dao.system.DeptDao.findById">
+        </association>
+    </resultMap>
+
+    <!-- 查询所有部门 -->
+    <select id="findAll" resultMap="BaseResultMap">
+        select * from pe_dept where company_id=#{companyId}
+    </select>
+
+    <!-- 根据id查询部门 -->
+    <select id="findById" resultMap="BaseResultMap">
+        select * from pe_dept where dept_id=#{id}
+    </select>
+
+    <!-- 添加保存部门 -->
+    <insert id="save">
+        insert into pe_dept
+        (
+        dept_id,
+        dept_name,
+        parent_id,
+        state,
+        company_id,
+        company_name
+        )
+        VALUES
+        (
+        #{id},
+        #{deptName},
+        <choose>
+            <when test="parent != null and parent.id != null and parent.id != '' ">
+                #{parent.id},
+            </when>
+            <otherwise>
+                NULL,
+            </otherwise>
+        </choose>
+        #{state},
+        #{companyId},
+        #{companyName}
+        )
+    </insert>
+    <!-- 修改更新部门 -->
+    <update id="update">
+        UPDATE pe_dept
+        SET
+        dept_name=#{deptName},
+        <choose>
+            <when test="parent != null and parent.id != null and parent.id != ''">
+                parent_id=#{parent.id},
+            </when>
+            <otherwise>
+                parent_id=null,
+            </otherwise>
+        </choose>
+        state=#{state},
+        company_id=#{companyId},
+        company_name=#{companyName}
+        where dept_id=#{id}
+    </update>
+
+    <!-- 根据父部门id查询 -->
+    <select id="findByParentId" resultMap="BaseResultMap">
+        select * from pe_dept where parent_id=#{parentId}
+    </select>
+
+    <!--删除部门-->
+    <delete id="delete">
+        delete from pe_dept where dept_id=#{id}
+    </delete>
+</mapper>

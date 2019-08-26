@@ -1,0 +1,6 @@
+2019-08-22 21:26:48,717 DEBUG [org.mybatis.spring.SqlSessionUtils] - Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6a2c717f]
+2019-08-22 21:26:48,717 DEBUG [org.mybatis.spring.SqlSessionUtils] - Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6a2c717f]
+2019-08-22 21:26:48,717 DEBUG [org.mybatis.spring.SqlSessionUtils] - Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6a2c717f]
+2019-08-22 21:26:48,717 INFO [org.springframework.context.support.GenericApplicationContext] - Closing org.springframework.context.support.GenericApplicationContext@5b03b9fe: startup date [Thu Aug 22 21:26:46 CST 2019]; root of context hierarchy
+2019-08-22 21:26:48,717 DEBUG [org.apache.shiro.spring.LifecycleBeanPostProcessor] - Destroying bean [securityManager]...
+2019-08-22 21:26:48,733 INFO [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closed

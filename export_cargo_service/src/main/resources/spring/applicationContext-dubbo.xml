@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 1.项目名称 -->
+    <dubbo:application name="export_cargo_service">
+        <dubbo:parameter key="qos.enable" value="false"/>
+    </dubbo:application>
+
+    <!-- 2.注册中心地址 -->
+    <dubbo:registry address="zookeeper://192.168.190.1:2181"/>
+
+    <!-- 3.配置dubbo协议以及客户端访问服务的端口 -->
+    <dubbo:protocol name="dubbo" port="20885"/>
+
+    <!-- 4.dubbo注解开启 -->
+    <dubbo:annotation package="cn.itcast.service.cargo.impl"/>
+
+</beans>
